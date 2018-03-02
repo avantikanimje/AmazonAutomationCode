@@ -45,15 +45,15 @@ public class Cart {
     }
     */
 
-        public String getCartTotal()
-        {
-            btnCart.click();
-            return cartTotal.getText();
-        }
-        public void removeItem(String bookName)
-        {
-            if(clickBook.getText().equals(bookName)){
+    public String getCartTotal()
+    {
+        btnCart.click();
+        return cartTotal.getText();
+    }
+    public void removeItem(String bookName)
+    {
+        if(clickBook.getText().equals(bookName)){
 
-            }
         }
+    }
 }
