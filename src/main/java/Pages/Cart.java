@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -52,8 +53,8 @@ public class Cart {
     }
     public void removeItem(String bookName)
     {
-        if(clickBook.getText().equals(bookName)){
-
-        }
+        btnCart.click();
+        driver.findElements(By.className("sc-action-delete")).get(0).click();
+        getCartTotal();
     }
 }
