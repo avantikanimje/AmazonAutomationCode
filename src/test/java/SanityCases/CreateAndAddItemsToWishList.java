@@ -27,7 +27,13 @@ public class CreateAndAddItemsToWishList extends DriverType{
     {
         extnUserLogin.signin("9441159999","amazondummy01");
         wishList.NavToCreateList();
-        wishList.createNewWishList("Dummy01","Private");
+        wishList.createNewWishList("Dummy02","Private");
         extnUserLogin.signout();
+    }
+
+    public void addItemsToWishList()
+    {
+        extnUserLogin.signin("9441159999","amazondummy01");
+        homePage.SearchBar("Rich Dad Poor Dad");
     }
 }

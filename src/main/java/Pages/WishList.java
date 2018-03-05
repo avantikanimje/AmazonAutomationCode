@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
+import java.util.List;
+
 public class WishList {
 
     public static WebDriver driver;
@@ -17,16 +19,18 @@ public class WishList {
     WebElement btnCreateList;
     @FindBy(id="WLNEW_list_name")
     WebElement txtWishListName;
-    @FindBy(id="WLNEW_privacy_private-announce")
+    @FindBy(id="WLNEW_privacy_private")
     WebElement btnPrivate;
-    @FindBy(id="WLNEW_privacy_public-announce")
+    @FindBy(id="WLNEW_privacy_public")
     WebElement btnPublic;
     @FindBy(id="WLNEW_cancel-announce")
     WebElement btnCancel;
-    @FindBy(className = "a-button-input")
+    @FindBy(xpath="//span[@data-action='reg-create-submit']")
     WebElement btnCreateList2;
-    @FindBy(partialLinkText = "wishlist")
+    @FindBy(id="nav-link-wishlist")
     WebElement btnYourWishList;
+   /* @FindBy(className = "nav-tpl-itemList")
+    List<WebElement> accountDropdown;*/
 
     public WishList(WebDriver driver)
     {
@@ -35,12 +39,16 @@ public class WishList {
     }
     public void NavToCreateList()
     {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(btnSignin).click(btnYourWishList).build().perform();
+        //Actions actions = new Actions(driver);
+        //actions.moveToElement(btnSignin).click(btnYourWishList).build().perform();
+        btnYourWishList.click();
+        //driver.get("https://www.amazon.in/gp/registry/wishlist/ref=nav_youraccount_wl?ie=UTF8&requiresSignIn=1");
+       // accountDropdown.get(2).click();
     }
     public void createNewWishList(String WishListName, String Access)
     {
         btnCreateList.click();
+        txtWishListName.clear();
         txtWishListName.sendKeys(WishListName);
         if(Access.equalsIgnoreCase("Private"))
             btnPrivate.click();

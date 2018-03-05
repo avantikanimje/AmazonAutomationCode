@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class HomePage {
@@ -29,8 +30,11 @@ public class HomePage {
     WebElement allBooksLink;
     @FindBy(xpath="//a[contains(@title,'The Power of')]")
     WebElement clickBook;
-    @FindBy(id="add-to-cart-button")
-    WebElement btnAddToCart;
+    @FindBy(className = "s-result-item")
+    List<WebElement> listItems;
+    @FindBy(id = "add-to-cart-button")
+    public WebElement btnAddToCart;
+
 
     public HomePage(WebDriver driver)
     {
@@ -44,7 +48,16 @@ public class HomePage {
         select.selectByVisibleText("Books");
         txtSearchBar.sendKeys(itemName);
         btnSearch.click();
-        clickBook.click();
+       /* driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        for(WebElement elem: listItems)
+        {
+            if(elem.findElement(By.xpath("//a[contains(@class,'s-color-twister-title-link')]")).getText().contains(itemName))
+            {
+                elem.click();
+            }
+        }*/
+       clickBook.click();
+       //driver.findElement(By.xpath("//a[@title='"+itemName+"')]")).click();
         // Store the current window handle
         String winHandleBefore = driver.getWindowHandle();
         // Perform the click operation that opens new window
@@ -54,13 +67,23 @@ public class HomePage {
         }
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        btnAddToCart.click();
+        //btnAddToCart.click();
     }
     public void shopByCategoryOption()
     {
         Actions action = new Actions(driver);
         action.moveToElement(btnShopAll).moveToElement(linkBooks).build().perform();
         allBooksLink.click();
+    }
+    public void listOfSearchItems(String itemName)
+    {
+        Select select = new Select(btnSearchDropdown);
+        select.selectByVisibleText("Books");
+        txtSearchBar.sendKeys(itemName);
+        btnSearch.click();
+
+        //System.out.println(listItems.get(1).findElement(By.xpath("//a[contains(@title,'"+itemName+"')]")).getText());
+        System.out.println(listItems.get(2).findElement(By.xpath("//a[contains(@class,'s-color-twister-title-link')]")).getText());
     }
 
 }

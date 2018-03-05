@@ -14,14 +14,14 @@ public class DriverType {
     {
         if(browser.equals("chrome")|| browser.equals("ch"))
         {
-            System.setProperty("webdriver.chrome.driver", "G:\\Intellij Software\\Chrome Driver 2.33\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "C:\\Users\\animje\\IdeaProjects\\chromedriver(2.35)\\chromedriver.exe");
             driver = new ChromeDriver();
             driver.get(websiteURL);
             driver.manage().window().maximize();
         }
         if(browser.equals("firefox")||browser.equals("ff"))
         {
-            System.setProperty("webdriver.gecko.driver","G:\\Intellij Software\\Chrome Driver 2.33\\chromedriver.exe");
+            System.setProperty("webdriver.gecko.driver","C:\\Users\\animje\\IdeaProjects\\chromedriver(2.35)\\chromedriver.exe");
             driver = new FirefoxDriver();
             driver.get(websiteURL);
         }
