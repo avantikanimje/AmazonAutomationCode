@@ -26,8 +26,16 @@ public class AddItemToCart extends DriverType{
     public void addItem()
     {
         extnUserLogin.signin("9441159999","amazondummy01");
-        homePage.SearchBar("Power of your subconcious mind");
+        homePage.SearchBar("The Power of your Subconscious Mind");
+        homePage.btnAddToCart.click();
         System.out.println(cart.getCartTotal());
+        extnUserLogin.signout();
+    }
+
+    public void printListItems()
+    {
+        extnUserLogin.signin("9441159999","amazondummy01");
+        homePage.listOfSearchItems("The Power of your Subconscious Mind");
         extnUserLogin.signout();
     }
 }
