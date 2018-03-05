@@ -10,7 +10,7 @@
             <class name="SanityCases.DeleteItemFromCart"></class>
             <class name="SanityCases.SaveItemForLater"></class>
             <class name="SanityCases.MoveItemBackToCart"></class>
-            <class name="SanityCases.CreateAndAddItemsToWishList"></class>
+            <class name="SanityCases.CreateAndAddItemsToWishListPage"></class>
 
         </classes>
     </test>

@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class HomePage {
+public class homePage {
 
     public static WebDriver driver;
 
@@ -36,7 +36,7 @@ public class HomePage {
     public WebElement btnAddToCart;
 
 
-    public HomePage(WebDriver driver)
+    public homePage(WebDriver driver)
     {
         this.driver = driver;
         PageFactory.initElements(new AjaxElementLocatorFactory(driver,10),this);
@@ -48,8 +48,8 @@ public class HomePage {
         select.selectByVisibleText("Books");
         txtSearchBar.sendKeys(itemName);
         btnSearch.click();
-       /* driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-        for(WebElement elem: listItems)
+       driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        /*for(WebElement elem: listItems)
         {
             if(elem.findElement(By.xpath("//a[contains(@class,'s-color-twister-title-link')]")).getText().contains(itemName))
             {
@@ -67,7 +67,9 @@ public class HomePage {
         }
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //btnAddToCart.click();
+
+        btnAddToCart.click();
+        driver.switchTo().window(winHandleBefore);
     }
     public void shopByCategoryOption()
     {

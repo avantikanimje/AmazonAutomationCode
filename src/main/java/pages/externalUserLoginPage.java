@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.util.Scanner;
 
-public class ExternalUserLogin {
+public class externalUserLoginPage {
 
     public static WebDriver driver;
     Scanner scanner=new Scanner(System.in);
@@ -38,7 +38,7 @@ public class ExternalUserLogin {
     WebElement btnVerify;
     @FindBy(id="nav-item-signout-sa")
     WebElement btnSignout;
-    public ExternalUserLogin(WebDriver driver) {
+    public externalUserLoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 10), this);
     }

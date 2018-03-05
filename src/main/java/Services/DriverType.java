@@ -27,4 +27,8 @@ public class DriverType {
         }
         return driver;
     }
+    public void driverClose()
+    {
+        driver.close();
+    }
 }

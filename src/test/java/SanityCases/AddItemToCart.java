@@ -1,40 +1,51 @@
 package SanityCases;
 
-import Pages.Cart;
-import Pages.ExternalUserLogin;
-import Pages.HomePage;
+import pages.Cart;
+import pages.externalUserLoginPage;
+import pages.homePage;
 import Services.DriverType;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import data.Constants;
 
 public class AddItemToCart extends DriverType{
 
     private WebDriver driver;
-    private ExternalUserLogin extnUserLogin;
-    private HomePage homePage;
+    private externalUserLoginPage extnUserLogin;
+    private pages.homePage homePage;
     private Cart cart;
+    private  Constants constants;
     @BeforeClass
     public void setUp()
     {
-       driver = launchApplication("https://www.amazon.in/","chrome");
-       extnUserLogin = new ExternalUserLogin(driver);
-       homePage = new HomePage(driver);
+       driver = launchApplication(constants.BaseUrl,constants.BrowserName);
+       extnUserLogin = new externalUserLoginPage(driver);
+       homePage = new homePage(driver);
        cart = new Cart(driver);
+
     }
     @Test
     public void addItem()
     {
-        extnUserLogin.signin("9441159999","amazondummy01");
-        homePage.SearchBar("The Power of your Subconscious Mind");
-        homePage.btnAddToCart.click();
+
+        extnUserLogin.signin(constants.ExtnUsername,constants.ExtnPassword);
+        homePage.SearchBar("Power of your Subconscious Mind");
+        //homePage.btnAddToCart.click();
         System.out.println(cart.getCartTotal());
         extnUserLogin.signout();
+
+    }
+    @AfterClass
+    public void close()
+    {
+        driverClose();
     }
 
     public void printListItems()
     {
-        extnUserLogin.signin("9441159999","amazondummy01");
+        extnUserLogin.signin(constants.ExtnUsername,constants.ExtnPassword);
         homePage.listOfSearchItems("The Power of your Subconscious Mind");
         extnUserLogin.signout();
     }
