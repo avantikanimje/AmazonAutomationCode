@@ -2,6 +2,7 @@ package Pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -35,7 +36,8 @@ public class ExternalUserLogin {
     WebElement txtEnterCode;
     @FindBy(id="auth_verify_button")
     WebElement btnVerify;
-
+    @FindBy(id="nav-item-signout-sa")
+    WebElement btnSignout;
     public ExternalUserLogin(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 10), this);
@@ -65,4 +67,8 @@ public class ExternalUserLogin {
         btnVerify.click();
     }
 
+    public void signout() {
+        Actions action = new Actions(driver);
+        action.moveToElement(btnSignin).click(btnSignout).build().perform();
+    }
 }

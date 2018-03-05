@@ -1,11 +1,14 @@
 package Pages;
 
+
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.w3c.css.sac.SelectorList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,25 +29,21 @@ public class Cart {
     WebElement clickBook;
     @FindBy(xpath="//input[@contains(aria-label,'Delete')]")
     WebElement deleteBook;
+    @FindBy(className="sc-active-cart a-list-item")
+    List<WebElement> productTitle;
+
     public Cart(WebDriver driver)
     {
         this.driver = driver;
         PageFactory.initElements(new AjaxElementLocatorFactory(driver,10),this);
     }
 
-   /* public void verifyCartItem(int i)
+    public void verifyCartItem(String bookName)
     {
-        ArrayList<String> al = new ArrayList<String>();
         btnCart.click();
-        for(WebElement resultItem: cartList)
-        {
-            al.add(resultItem.getText());
-        }
-        System.out.println(al.get(i));
-        (
-        System.out.println(cartItem.getText());
+        List<WebElement> cartItems = driver.findElements(By.className("sc-list-body"));
+        System.out.println(cartItems.get(0).getText());
     }
-    */
 
     public String getCartTotal()
     {
@@ -54,7 +53,56 @@ public class Cart {
     public void removeItem(String bookName)
     {
         btnCart.click();
+        System.out.println(productTitle.get(0));
         driver.findElements(By.className("sc-action-delete")).get(0).click();
-        getCartTotal();
+        System.out.println(getCartTotal());
+    }
+    public void saveForLater(String bookName)
+    {
+        btnCart.click();
+        int index=0;
+        for(WebElement elem: productTitle)
+        {
+            if(elem.getText().equalsIgnoreCase(bookName))
+            {
+                //System.out.println(elem.getText());
+                index = productTitle.indexOf(elem);
+                break;
+            }
+        }
+        driver.findElements(By.className("sc-action-save-for-later")).get(index).click();
+        System.out.println(getCartTotal());
+    }
+    public void moveTOCart(String bookName)
+    {
+        btnCart.click();
+        int index=0;
+        for(WebElement elem: productTitle)
+        {
+            if(elem.getText().equalsIgnoreCase(bookName))
+            {
+                index = productTitle.indexOf(elem);
+                break;
+            }
+        }
+        driver.findElements(By.className("sc-action-move-to-cart")).get(index).click();
+        System.out.println(getCartTotal());
+    }
+    public void changeItemQuantity(String bookName, String quantity)
+    {
+        btnCart.click();
+        int index=0;
+        for(WebElement elem: productTitle)
+        {
+            if(elem.getText().equalsIgnoreCase(bookName))
+            {
+                index = productTitle.indexOf(elem);
+                break;
+            }
+        }
+        Select s = new Select(driver.findElements(By.name("quantity")).get(index));
+        // Select s = new Select(quantitySelectList);
+        s.selectByVisibleText(quantity);
+        System.out.println(getCartTotal());
     }
 }

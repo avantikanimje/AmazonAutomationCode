@@ -23,16 +23,11 @@ public class DeleteItemFromCart extends DriverType
         cart = new Cart(driver);
     }
 
-    public void addItem()
-    {
-        extnUserLogin.signin("9441159999","amazondummy01");
-        homePage.SearchBar("Power of your subconcious mind");
-        System.out.println(cart.getCartTotal());
-    }
     @Test
     public void removeItem()
     {
         extnUserLogin.signin("9441159999","amazondummy01");
         cart.removeItem("The Power of your Subconcious Mind");
+        extnUserLogin.signout();
     }
 }

@@ -8,7 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class SaveItemForLater extends DriverType{
+public class MoveItemBackToCart extends DriverType
+{
     private WebDriver driver;
     private ExternalUserLogin extnUserLogin;
     private HomePage homePage;
@@ -21,19 +22,12 @@ public class SaveItemForLater extends DriverType{
         homePage = new HomePage(driver);
         cart = new Cart(driver);
     }
+
     @Test
-    public void saveForLater()
+    public void moveToCart()
     {
         extnUserLogin.signin("9441159999","amazondummy01");
-        cart.saveForLater("How to Stop Worrying and Start Living");
+        cart.moveTOCart("The Power of your Subconcious Mind");
         extnUserLogin.signout();
     }
-
-    public void checkItemsList()
-    {
-        extnUserLogin.signin("9441159999","amazondummy01");
-        cart.verifyCartItem("How to Stop Worrying and Start Living");
-        extnUserLogin.signout();
-    }
-
 }

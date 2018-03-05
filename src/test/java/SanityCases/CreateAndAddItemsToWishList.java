@@ -3,37 +3,31 @@ package SanityCases;
 import Pages.Cart;
 import Pages.ExternalUserLogin;
 import Pages.HomePage;
+import Pages.WishList;
 import Services.DriverType;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class SaveItemForLater extends DriverType{
+public class CreateAndAddItemsToWishList extends DriverType{
     private WebDriver driver;
     private ExternalUserLogin extnUserLogin;
     private HomePage homePage;
-    private Cart cart;
+    private WishList wishList;
     @BeforeClass
     public void setUp()
     {
         driver = launchApplication("https://www.amazon.in/","chrome");
         extnUserLogin = new ExternalUserLogin(driver);
         homePage = new HomePage(driver);
-        cart = new Cart(driver);
+        wishList = new WishList(driver);
     }
     @Test
-    public void saveForLater()
+    public void createWishList()
     {
         extnUserLogin.signin("9441159999","amazondummy01");
-        cart.saveForLater("How to Stop Worrying and Start Living");
+        wishList.NavToCreateList();
+        wishList.createNewWishList("Dummy01","Private");
         extnUserLogin.signout();
     }
-
-    public void checkItemsList()
-    {
-        extnUserLogin.signin("9441159999","amazondummy01");
-        cart.verifyCartItem("How to Stop Worrying and Start Living");
-        extnUserLogin.signout();
-    }
-
 }

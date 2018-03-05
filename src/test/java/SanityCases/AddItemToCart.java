@@ -28,5 +28,6 @@ public class AddItemToCart extends DriverType{
         extnUserLogin.signin("9441159999","amazondummy01");
         homePage.SearchBar("Power of your subconcious mind");
         System.out.println(cart.getCartTotal());
+        extnUserLogin.signout();
     }
 }
